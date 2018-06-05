@@ -11,7 +11,6 @@ namespace XUnitTestT1Lab
             return new Account(balance, interest);
         }
 
-
         #region Deposit Tests
 
         [Theory]
