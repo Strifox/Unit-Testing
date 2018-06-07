@@ -192,7 +192,7 @@ namespace XUnitTestT1Lab
         }
 
         [Fact]
-        public void Transfer_ToAnotherAccount_Successful()
+        public void IsTransferToNewAccountSuccessful_Successful()
         {
             Account account = new Account(10000, 0.02);
             Account newAccount = new Account(400, 0.02);
@@ -204,6 +204,22 @@ namespace XUnitTestT1Lab
             double actualNewAccountBalance = newAccount.Balance;
 
             Assert.Equal(expectedNewAccountBalance, actualNewAccountBalance);
+
+        }
+
+        [Fact]
+        public void IsTransferFromOldAccountSuccessful_Successful()
+        {
+            Account account = new Account(10000, 0.02);
+            Account newAccount = new Account(400, 0.02);
+
+            double amountToTransfer = 4000;
+            account.Transfer(newAccount, amountToTransfer);
+
+            double expectedOldAccountBalance = 6000;
+            double actualOldAccountBalance = account.Balance;
+
+            Assert.Equal(expectedOldAccountBalance, actualOldAccountBalance);
 
         }
         #endregion
