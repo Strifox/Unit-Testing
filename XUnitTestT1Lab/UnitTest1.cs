@@ -12,14 +12,14 @@ namespace XUnitTestT1Lab
             return new Account(balance, interest);
         }
         
-        #region Account
+        #region Constructor
 
         [Theory]
         [InlineData(-1)]
         [InlineData(double.NaN)]
         [InlineData(double.NegativeInfinity)]
         [InlineData(double.PositiveInfinity)]
-        public void Account_IfBalanceInputIsInvalid_ThrowException(double balance)
+        public void Constructor_IfBalanceInputIsInvalid_ThrowException(double balance)
         {
             Assert.Throws<Exception>(() =>
             {
@@ -32,7 +32,7 @@ namespace XUnitTestT1Lab
         [InlineData(double.NaN)]
         [InlineData(double.NegativeInfinity)]
         [InlineData(double.PositiveInfinity)]
-        public void Account_IfInterestInputIsInvalid_ThrowException(double interest)
+        public void Constructor_IfInterestInputIsInvalid_ThrowException(double interest)
         {
             Assert.Throws<Exception>(() =>
             {
@@ -41,7 +41,7 @@ namespace XUnitTestT1Lab
         }
 
         [Fact]
-        public void Account_IfBalanceIsValid_Success()
+        public void Constructor_IfBalanceIsValid_Success()
         {
             Account account = CreateAccount(1000,0.02);
 
@@ -52,7 +52,7 @@ namespace XUnitTestT1Lab
         }
 
         [Fact]
-        public void Account_IfInterestIsValid_Success()
+        public void Constructor_IfInterestIsValid_Success()
         {
             Account account = CreateAccount(1000, 0.02);
 
