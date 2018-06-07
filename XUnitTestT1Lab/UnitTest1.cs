@@ -40,6 +40,28 @@ namespace XUnitTestT1Lab
             });
         }
 
+        [Fact]
+        public void Account_IfBalanceIsValid_Success()
+        {
+            Account account = CreateAccount(1000,0.02);
+
+            double actualBalance = account.Balance;
+            double expectedBalance = 1000;
+
+            Assert.Equal(expectedBalance, actualBalance);
+        }
+
+        [Fact]
+        public void Account_IfInterestIsValid_Success()
+        {
+            Account account = CreateAccount(1000, 0.02);
+
+            double actualInterest = account.Interest;
+            double expectedInterest = 0.02;
+
+            Assert.Equal(expectedInterest, actualInterest);
+        }
+
         #endregion
 
         #region Deposit Tests
@@ -47,7 +69,6 @@ namespace XUnitTestT1Lab
         [Theory]
         [InlineData(double.NegativeInfinity)]
         [InlineData(double.PositiveInfinity)]
-        [InlineData(double.Epsilon)]
         [InlineData(3)]
         [InlineData(double.NaN)]
         public void Deposit_IfAmountIsToLow_ExceptionThrown(double amount)
