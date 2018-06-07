@@ -6,10 +6,41 @@ namespace XUnitTestT1Lab
 {
     public class UnitTest1
     {
+
         public Account CreateAccount(double balance, double interest )
         {
             return new Account(balance, interest);
         }
+        
+        #region Account
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(double.NaN)]
+        [InlineData(double.NegativeInfinity)]
+        [InlineData(double.PositiveInfinity)]
+        public void Account_IfBalanceInputIsInvalid_ThrowException(double balance)
+        {
+            Assert.Throws<Exception>(() =>
+            {
+                Account account = CreateAccount(balance, 0.02);
+            });
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(double.NaN)]
+        [InlineData(double.NegativeInfinity)]
+        [InlineData(double.PositiveInfinity)]
+        public void Account_IfInterestInputIsInvalid_ThrowException(double interest)
+        {
+            Assert.Throws<Exception>(() =>
+            {
+                Account account = CreateAccount(1000, interest);
+            });
+        }
+
+        #endregion
 
         #region Deposit Tests
 
@@ -148,43 +179,15 @@ namespace XUnitTestT1Lab
             double amountToTransfer = 4000;
             account.Transfer(newAccount, amountToTransfer);
 
-            double expectedAccountBalance = 4400;
-            double actualAccountBalance = newAccount.Balance;
+            double expectedNewAccountBalance = 4400;
+            double actualNewAccountBalance = newAccount.Balance;
 
-            Assert.Equal(expectedAccountBalance, actualAccountBalance);
+            Assert.Equal(expectedNewAccountBalance, actualNewAccountBalance);
 
         }
         #endregion
 
         #region Interest Tests
-
-        [Theory]
-        [InlineData(double.NegativeInfinity)]
-        [InlineData(double.PositiveInfinity)]
-        [InlineData(double.NaN)]
-        public void Calculate_IfInvalidBalance_ExceptionThrown(double amount)
-        {
-            Account account = CreateAccount(amount, 0.02);
-
-            Assert.Throws<Exception>(() =>
-            {
-                account.CalculateInterest();
-            });
-        }
-
-        [Theory]
-        [InlineData(double.NegativeInfinity)]
-        [InlineData(double.PositiveInfinity)]
-        [InlineData(double.NaN)]
-        public void Calculate_IfInvalidInterest_ExceptionThrown(double amount)
-        {
-            Account account = CreateAccount(1000, amount);
-
-            Assert.Throws<Exception>(() =>
-            {
-                account.CalculateInterest();
-            });
-        }
 
         [Fact]
         public void CalculateInterest_Successful()
@@ -210,7 +213,6 @@ namespace XUnitTestT1Lab
             Assert.Equal(expectedBalance, actualBalance);
         }
         #endregion
-
 
     }
 }

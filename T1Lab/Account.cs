@@ -11,6 +11,21 @@ namespace T1Lab
 
         public Account(double initialBalance, double interest)
         {
+            if (initialBalance < 0)
+                throw new Exception("Value is to low, must be 10 dollar or higher");
+            if (double.IsNaN(initialBalance))
+                throw new Exception("Must enter a number");
+            if (double.IsInfinity(initialBalance))
+                throw new Exception("You have enter a to low or to high number");
+
+            if (interest < 0)
+                throw new Exception("Value is to low, must be 10 dollar or higher");
+            if (double.IsNaN(interest))
+                throw new Exception("Must enter a number");
+            if (double.IsInfinity(interest))
+                throw new Exception("You have enter a to low or to high number");
+
+
             Balance = initialBalance;
             Interest = interest;
         }
@@ -70,11 +85,11 @@ namespace T1Lab
 
         public double CalculateInterest()
         {
-            if(double.IsNaN(Interest))
+            if (double.IsNaN(Interest))
                 throw new Exception("Must enter a number");
             if (double.IsNaN(Balance))
                 throw new Exception("Must enter a number");
-            if (double.IsInfinity(Interest))                                                                                                                    
+            if (double.IsInfinity(Interest))
                 throw new Exception("You have enter a to low or to high number");
             if (double.IsInfinity(Balance))
                 throw new Exception("Balance is either to low or to high number");
