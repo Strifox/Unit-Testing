@@ -85,15 +85,7 @@ namespace T1Lab
 
         public double CalculateInterest()
         {
-            if (double.IsNaN(Interest))
-                throw new Exception("Must enter a number");
-            if (double.IsNaN(Balance))
-                throw new Exception("Must enter a number");
-            if (double.IsInfinity(Interest))
-                throw new Exception("You have enter a to low or to high number");
-            if (double.IsInfinity(Balance))
-                throw new Exception("Balance is either to low or to high number");
-
+           
             double rate = Interest * Balance;
             double newBalance = rate + Balance;
             Balance = newBalance;
